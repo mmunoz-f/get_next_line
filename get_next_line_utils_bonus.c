@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmunoz-f <mmunoz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 17:58:38 by mmunoz-f          #+#    #+#             */
-/*   Updated: 2021/02/12 18:14:26 by mmunoz-f         ###   ########.fr       */
+/*   Created: 2021/01/30 12:21:47 by mmunoz-f          #+#    #+#             */
+/*   Updated: 2022/01/11 18:02:38 by mmunoz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-unsigned int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	unsigned int	i;
+	size_t	i;
 
 	if (!s)
 		return (0);
@@ -24,9 +24,9 @@ unsigned int	ft_strlen(const char *s)
 	return (i);
 }
 
-char			*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
+	size_t	i;
 
 	if (!s)
 		return (0);
@@ -38,11 +38,11 @@ char			*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char			*ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-	unsigned int	i;
-	char			*a;
-	unsigned int	len;
+	size_t	i;
+	size_t	len;
+	char	*a;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -57,49 +57,55 @@ char			*ft_strdup(const char *s)
 	return (a);
 }
 
-char			*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *src, size_t start, size_t len)
 {
-	char			a[len + 1];
-	unsigned int	i;
-	unsigned int	size;
+	char	*dest;
+	size_t	i;
+	size_t	total;
 
-	i = 0;
-	if (!s)
+	if (!src)
 		return (0);
-	size = ft_strlen(s);
-	if ((size_t)start >= size)
-		start = size;
+	dest = (char *)malloc(len + 1);
+	if (!dest)
+		return (0);
+	total = ft_strlen(src);
+	if (start >= total)
+		start = total;
+	i = 0;
+	src += start;
 	while (i < len)
 	{
-		a[i] = (s + start)[i];
+		dest[i] = src[i];
 		i++;
 	}
-	a[i] = 0;
-	return (ft_strdup(a));
+	dest[i] = 0;
+	return (dest);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, const char *s2)
 {
-	unsigned int	i;
-	char			*f;
-	unsigned int	len1;
-	unsigned int	len2;
+	char	*result;
+	size_t	i;
+	size_t	len1;
+	size_t	len2;
 
 	if (!s1 || !s2)
 		return (0);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(f = malloc(len1 + len2 + 1)))
+	result = malloc(len1 + len2 + 1);
+	if (!result)
 		return (0);
 	i = 0;
-	while (i < len1 + len2)
+	len2 = len1 + len2;
+	while (i < len2)
 	{
 		if (i < len1)
-			f[i] = s1[i];
+			result[i] = s1[i];
 		else
-			f[i] = s2[i - len1];
+			result[i] = s2[i - len1];
 		i++;
 	}
-	f[i] = 0;
-	return (f);
+	result[i] = 0;
+	return (result);
 }

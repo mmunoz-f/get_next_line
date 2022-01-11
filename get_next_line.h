@@ -6,7 +6,7 @@
 /*   By: mmunoz-f <mmunoz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:21:41 by mmunoz-f          #+#    #+#             */
-/*   Updated: 2021/02/12 18:14:57 by mmunoz-f         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:03:01 by mmunoz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 #  define BUFFER_SIZE 32
 # endif
 
-int				get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
 
-char			*ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 
-unsigned int	ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 
-char			*ft_strjoin(const char *s1, const char *s2);
+char    *ft_strjoin(const char *s1, const char *s2);
 
-char			*ft_strdup(const char *s);
+char	*ft_strdup(const char *s);
 
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *src, size_t start, size_t len);
 
 #endif
